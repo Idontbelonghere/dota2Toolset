@@ -1,0 +1,63 @@
+#bpBanner
+  .container
+    h1 BET PROFIT
+    button.btn#ghost1(type="button", data-toggle="modal", data-target="#myModal") AddTeam
+.container
+  #myModal.modal.fade(tabindex="-1",role="dialog", aria-labelledby="myModalLabel")
+    .modal-dialog(role="document")
+      .modal-content
+        .modal-header
+          button.close(type="button",data-dismiss="modal", aria-label="Close")
+            span(aria-hidden="true") x
+          h4.black#myModalLabel.modal-title Adding
+        .modal-body.black
+          form
+            .form-group
+              label(for="teamName")  Name
+              input.form-control#teamName(type='text' )
+            .form-group
+              label(for="teamLogo")  Logo
+              input.form-control#teamLogo(type='text' )
+          form
+            .row
+              .form-group.col-md-6
+                label(for="tenKP") 10 kills Profit
+                input.form-control#tenKP(type='text' )
+              .form-group.col-md-6
+                label(for="tenKI") 10 kills Invest
+                input.form-control#tenKI(type='text' )
+          form
+            .row
+              .form-group.col-md-6
+                label(for="winGameP") winGame Profit
+                input.form-control#winGameP(type='text' )
+              .form-group.col-md-6
+                label(for="winGameI") winGame Invest
+                input.form-control#winGameI(type='text' )
+          form
+            .row
+              .form-group.col-md-6
+                label(for="totalP") Total Profit
+                input.form-control#totalP(type='text' )
+              .form-group.col-md-6
+                label(for="toalI") Total Invest
+                input.form-control#totalI(type='text' )
+        .modal-footer
+          button.btn.btn-danger(data-dismiss="modal") Close
+          button.btn.btn-success#save_A_TeamBetInfo Save
+
+  each val,index in data
+    .teamCard
+      img.floatleft(src=val.avatar,width="200", height="200",alt="avatar")
+      .floatleft.teamInfo
+        p.teamName=val.name
+        p.tkProfit 10k(P) : #{val.tkProfit}
+        p.tkInvest 10k(I) : #{val.tkInvest}
+        p.wgProfit wg(P) : #{val.wgProfit}
+        p.wgInvest wg(I) : #{val.wgInvest}
+        p.profit P : #{val.profit}
+        p.invest I : #{val.invest}
+      button.btn.btn-default.rightcorner#updateInfo
+       span.glyphicon.glyphicon-plus
+
+

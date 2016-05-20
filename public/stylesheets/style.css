@@ -1,0 +1,125 @@
+@font-face {
+    font-family: "AlegreSans";
+    src: url('AlegreSans-Regular.ttf') format('truetype');
+}
+
+body {
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: #f1f8e9;
+}
+
+
+/*a {
+    color: #00B7FF;
+}
+*/
+
+#bpBanner {
+    background-color: #2d2d2d;
+}
+
+#bpBanner h1 {
+    color: white;
+    font: 64px "AlegreSans";
+    text-shadow: -5px 5px 0 rgba(0, 0, 0, 0.1);
+    display: inline-block;
+}
+
+#banner {
+    padding: 0;
+    background-color: #208d4e;
+    height: 100%;
+}
+
+#siteInfo {
+    margin-left: 45px;
+}
+
+#siteInfo h1 {
+    color: white;
+    font: 64px "AlegreSans";
+    text-shadow: -5px 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+#countBox {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+.res {
+    padding: 20px
+}
+
+.teamCard {
+    border: 1px black solid;
+    float: left;
+    width: 350px;
+    margin: 15px;
+}
+
+.floatleft {
+    float: left;
+}
+
+.teamInfo {
+    padding-left: 20px;
+    padding-top: 10px
+}
+
+#ghost1 {
+    background: transparent;
+    border: white 2px solid;
+    color: white;
+    font: 18px "AlegreSans";
+    margin-bottom: 25px;
+    margin-left: 50px;
+}
+
+#ghost1:hover {
+    color: #208d4e;
+    background-color: white;
+    border: #208d4e 2px solid;
+}
+
+.rightcorner {
+    float: right;
+    padding: 5px 8px;
+}
+
+#menu {
+    margin-top: 100px;
+}
+
+.list {
+    padding: 20px 0 20px 60px;
+}
+
+.list:hover {
+    cursor: pointer;
+    color:white;
+    opacity:0.5;
+}
+
+.listIcon {
+    font-size: 18px;
+}
+
+.listItem {
+    margin-left: 5px;
+    margin-bottom: 12px;
+    font: 24px "AlegreSans";
+}
+
+#content {
+  padding:0;
+}
+
+#updateInfo {
+  background: transparent;
+}
+
+#app {
+  margin-top:50px;
+}
+

@@ -1,0 +1,34 @@
+doctype html
+html
+  head
+    title= title
+    link(rel="stylesheet", href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.css")
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src="https://cdn.jsdelivr.net/vue/latest/vue.js")
+    script(src="http://cdn.bootcss.com/jquery/2.1.4/jquery.js")
+    script(src="http://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js")
+    script(src='/javascripts/main.js')
+
+    body
+      .container-fluid
+        .row
+          .col-md-2#banner
+            #siteInfo
+              h1 ToolSet
+                small   v0.0.1
+            #menu
+              .list#schedule
+                span.glyphicon.glyphicon-sunglasses.listIcon
+                spanspan.listItem SCHEDULE
+              .list#tenKills
+                span.glyphicon.glyphicon-stats.listIcon
+                span.listItem 10 KILLS
+              .list#teamInfo
+                span.glyphicon.glyphicon-globe.listIcon
+                span.listItem TEAM INFO
+              .list#betProfit
+                span.glyphicon.glyphicon-usd.listIcon
+                span.listItem BET PROFIT
+
+          .col-md-10#content
+

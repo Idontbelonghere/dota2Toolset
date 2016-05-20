@@ -1,0 +1,7 @@
+{
+  "apps":[{
+    "name":"dota2toolset",
+    "script":"bin/www",
+    "watch":["app.js","./routes"]
+  }]
+}

@@ -1,0 +1,28 @@
+#bpBanner
+  .container
+    h1 YOUR SCHEDULE
+.container
+  form.form-inline#countBox
+    .form-group
+      label.sr-only(for="principal") YOUR SCHEDULE
+      .input-group
+        .input-group-addon $
+        input.form-control#principal(type='text',placeholder='5')
+        .input-group-addon *
+        input.form-control#factor(type='text',placeholder='1.2')
+        .input-group-addon days
+        input.form-control#days(type='text',placeholder='10')
+    .btn.btn-primary#getRes Count
+
+  .res
+    table.table.table-striped
+      thead
+        tr
+          th days
+          th cash - planed
+          th cash - got
+          th D-value
+      tbody
+
+
+

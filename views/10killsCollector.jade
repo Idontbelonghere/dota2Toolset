@@ -1,0 +1,30 @@
+#bpBanner
+  .container
+    h1 10 KIILS COLLECTOR
+
+.container
+  #app
+    input(v-model="newTeam", v-on:keyup.enter="addTeam")
+    table.table-bordered.table
+      thead
+        tr
+          th Team
+          th Games
+          th 1st10k
+          th 1st !10k
+          th 2nd10k
+          th 2nd!10k
+          th 2nd10k after 1st10k
+          th DEL
+      tbody
+        tr(v-for="team in teamlist")
+          td {{team.team}}
+          td {{team.total}}
+          td {{team.fk}}
+          td {{team.fnk}}
+          td {{team.sk}}
+          td {{team.snk}}
+          td {{team.sAf}}
+
+          td
+            button(v-on:click="removeTeam($index)") x
