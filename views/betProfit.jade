@@ -14,50 +14,69 @@
           form
             .form-group
               label(for="teamName")  Name
-              input.form-control#teamName(type='text' )
+              input.form-control#initialteamName(type='text' )
             .form-group
               label(for="teamLogo")  Logo
-              input.form-control#teamLogo(type='text' )
+              input.form-control#initialteamLogo(type='text' )
           form
             .row
               .form-group.col-md-6
                 label(for="tenKP") 10 kills Profit
-                input.form-control#tenKP(type='text' )
+                input.form-control#initialtenKP(type='text' )
               .form-group.col-md-6
                 label(for="tenKI") 10 kills Invest
-                input.form-control#tenKI(type='text' )
+                input.form-control#initialtenKI(type='text' )
           form
             .row
               .form-group.col-md-6
                 label(for="winGameP") winGame Profit
-                input.form-control#winGameP(type='text' )
+                input.form-control#initialwinGameP(type='text' )
               .form-group.col-md-6
                 label(for="winGameI") winGame Invest
-                input.form-control#winGameI(type='text' )
+                input.form-control#initialwinGameI(type='text' )
           form
             .row
               .form-group.col-md-6
                 label(for="totalP") Total Profit
-                input.form-control#totalP(type='text' )
+                input.form-control#initialtotalP(type='text' )
               .form-group.col-md-6
                 label(for="toalI") Total Invest
-                input.form-control#totalI(type='text' )
+                input.form-control#initialtotalI(type='text' )
         .modal-footer
           button.btn.btn-danger(data-dismiss="modal") Close
           button.btn.btn-success#save_A_TeamBetInfo Save
-
+.container-fluid
   each val,index in data
     .teamCard
-      img.floatleft(src=val.avatar,width="200", height="200",alt="avatar")
-      .floatleft.teamInfo
+      .front
+        img.floatleft(src=val.avatar,width="215", height="215",alt="avatar")
+        .floatleft.teamInfo
+          p.teamName=val.name
+          p.tkProfit.gr(grval="#{val.tkProfit}") 十杀收益 :
+            span #{val.tkProfit}
+          p.tkInvest 十杀投注 :
+            span #{val.tkInvest}
+          p.wgProfit.gr(grval="#{val.wgProfit}") 赢盘收益 :
+            span #{val.wgProfit}
+          p.wgInvest 赢盘投注 :
+            span #{val.wgInvest}
+          p.profit.gr(grval="#{val.profit}") 总收益 :
+            span #{val.profit}
+          p.invest 总投注 :
+            span #{val.invest}
+        button.btn.btn-default.rightcorner.updateInfo
+         span.glyphicon.glyphicon-plus
+      .betAddtion(style='display:none')
         p.teamName=val.name
-        p.tkProfit 10k(P) : #{val.tkProfit}
-        p.tkInvest 10k(I) : #{val.tkInvest}
-        p.wgProfit wg(P) : #{val.wgProfit}
-        p.wgInvest wg(I) : #{val.wgInvest}
-        p.profit P : #{val.profit}
-        p.invest I : #{val.invest}
-      button.btn.btn-default.rightcorner#updateInfo
-       span.glyphicon.glyphicon-plus
+        paper-input.lineInput.onceTP(label='10 kills Profit')
+        paper-input.lineInput.onceTI(label='10 kills Invest')
+        paper-input.lineInput.onceWP(label='winGame Profit')
+        paper-input.lineInput.onceWI(label='winGame Invest')
+
+        br
+        button.btn.btn-xs.btn-danger.cancleBtn back
+        button.btn.btn-xs.btn-success.saveBtn save
+
+
 
 

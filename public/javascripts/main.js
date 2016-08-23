@@ -1,20 +1,19 @@
 /*
  * @Author: kris
  * @Date:   2016-05-19 15:35:19
- * @Last Modified by:   kris
- * @Last Modified time: 2016-05-19 17:26:01
+ * @Last Modified by:   Idontbelonghere
+ * @Last Modified time: 2016-06-02 11:23:42
  */
 
 'use strict';
 
 $(function() {
     var windowHeight = $(window).height();
-    $('#menu').height(windowHeight);
+    $('.row').height(windowHeight);
     $(window).resize(function() {
         var windowHeight = $(window).height();
-        $('#menu').height(windowHeight);
+        $('.row').height(windowHeight);
     })
-
     $('#tenKills').on('click', function() {
         $.get('/10kills', function(data) {
             $('#content').html(data);
@@ -37,7 +36,6 @@ $(function() {
                                 "snk": 0,
                                 "sAf": 0
                             };
-
                             if (team) {
                                 this.teamlist.push(obj);
                                 this.newTeam = ''
@@ -56,21 +54,60 @@ $(function() {
     $('#betProfit').on('click', function() {
         $.get('/betProfit', function(data) {
             $('#content').html(data);
+            $('.gr').each(function(){
+                var grval = $(this).attr('grval');
+                if(grval>0){
+                    $(this).find('span').addClass('setGreen');
+                };
+                if(grval<0){
+                    $(this).find('span').addClass('setRed');
+                }
+            })
+
+
             $('#save_A_TeamBetInfo').on('click', function() {
                 var data = {};
-                data.name = $('#teamName').val();
-                data.avatar = $('#teamLogo').val();
-                data.tkProfit = Number($('#tenKP').val());
-                data.tkInvest = Number($('#tenKI').val());
-                data.wgProfit = Number($('#winGameP').val());
-                data.wgInvest = Number($('#winGameI').val());
-                data.profit = Number($('#totalP').val());
-                data.invest = Number($('#totalI').val());
+                data.name = $('#initialteamName').val();
+                data.avatar = $('#initialteamLogo').val();
+                data.tkProfit = Number($('#initialtenKP').val());
+                data.tkInvest = Number($('#initialtenKI').val());
+                data.wgProfit = Number($('#initialwinGameP').val());
+                data.wgInvest = Number($('#initialwinGameI').val());
+                data.profit = Number($('#initialtotalP').val());
+                data.invest = Number($('#initialtotalI').val());
                 var str = JSON.stringify(data);
-                console.log(str);
                 $.post('/api/save_A_TeamBetInfo?Info=' + str, function(res) {
                     console.log(res.msg);
                 })
+
+            })
+            $('.updateInfo').on('click', function() {
+                $(this).parent().hide();
+                $(this).parent().siblings('.betAddtion').show();
+            })
+            $('.cancleBtn').on('click', function() {
+                //need refresh teamCard's info, not by F5.
+                $(this).parent().hide();
+                $(this).parent().siblings('.front').show();
+                $(this).siblings('.lineInput').val('');
+            })
+            $('.saveBtn').on('click', function() {
+                var data = {};
+                data.name = $.trim($(this).siblings('.teamName').html());
+                data.onceTP = Number($(this).siblings('.onceTP').val()) || 0;
+                data.onceTI = Number($(this).siblings('.onceTI').val()) || 0;
+                data.onceWP = Number($(this).siblings('.onceWP').val()) || 0;
+                data.onceWI = Number($(this).siblings('.onceWI').val()) || 0;
+                var str = JSON.stringify(data);
+                console.log(data);
+                if ((data.onceTI == 0) && (data.onceTP == 0) && (data.onceWI == 0) && (data.onceWP == 0)) {
+                    alert('can not be empty');
+                } else {
+                    $.post('/api/save_each_bet?Info=' + str, function(res) {
+                        console.log(res);
+                    })
+                    $(this).siblings('.lineInput').val('');
+                }
             })
         })
 
@@ -79,6 +116,14 @@ $(function() {
     $('#teamInfo').on('click', function() {
         $.get('/teaminfo', function(data) {
             $('#content').html(data);
+
+            $.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars',function(data){
+                var trs='';
+                $.each(data.items, function(index,val){
+                    trs += '<li>'+val.name+'</li>';
+                });
+                $('#githubRanks').html('<ol>'+trs+'</ol>');
+            })
         })
     })
 
@@ -87,7 +132,6 @@ $(function() {
             $('#content').html(data);
 
             function cgChange() {
-                //- $(x).val()
                 var tcg = $(this).val()
                 var tcp = $(this).parent().siblings('.tcp').text();
                 var d_v = tcg - tcp;
@@ -95,7 +139,6 @@ $(function() {
             };
 
             $('#getRes').on('click', function() {
-                console.log(11111);
                 var day_counter = 1;
                 var s = parseInt($('#principal').val());
                 var f = $('#factor').val();
@@ -115,11 +158,8 @@ $(function() {
                 };
                 $('tbody').html(trs);
                 $('.tcg').on('change', cgChange);
-
             })
         });
-
-
     })
 
 

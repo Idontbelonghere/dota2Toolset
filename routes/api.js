@@ -29,8 +29,8 @@ router.post('/save_A_TeamBetInfo', function(req, res, next) {
         db.collection('bet_team_Info').insert(tgt, function(err1, res1) {
             console.log('Insert one Team Info.');
             var resMsg = {
-              'status':1,
-              'msg':'TeamInfo Inserted.'
+                'status': 1,
+                'msg': 'TeamInfo Inserted.'
             };
             res.send(resMsg);
             db.close();
@@ -38,8 +38,36 @@ router.post('/save_A_TeamBetInfo', function(req, res, next) {
     })
 })
 
+router.post('/save_each_bet', function(req, res, next) {
+    var qsurl = url.parse(req.url).query;
+    var data = qs.parse(qsurl)['Info'];
+    var tgt = JSON.parse(data);
+    console.log(tgt);
+    MongoClient.connect(dbURI, function(err, db) {
+        db.collection('bet_team_Info').updateOne({ name: tgt.name }, {
+            $inc: {
+                tkProfit: tgt.onceTP,
+                tkInvest: tgt.onceTI,
+                wgProfit: tgt.onceWP,
+                wgInvest: tgt.onceWI,
+                profit: Number((tgt.onceTP + tgt.onceWP).toFixed(2)),
+                invest: Number((tgt.onceTI + tgt.onceWI).toFixed(2))
+            }
+        }, function(err2, result) {
+            db.collection('each_bet_infos').insert(tgt, function(err1, res1) {
+                console.log('Insert each_bet_infos.');
+                var resMsg = {
+                    'status': 1,
+                    'msg': 'each_bet_infos Inserted.'
+                };
+                res.send(resMsg);
+                db.close();
+            })
+        });
+
+
+
+    })
+})
 
 module.exports = router;
-
-
-

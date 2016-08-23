@@ -36,6 +36,14 @@ router.get('/betProfit', function(req, res, next) {
         assert.equal(null, err);
         var cursor = db.collection('bet_team_Info').find();
         cursor.toArray().then(function(data) {
+            data.forEach(function(val,index,arr){
+                val.tkProfit = Number(val.tkProfit.toFixed(2));
+                val.tkInvest = Number(val.tkInvest.toFixed(2));
+                val.wgProfit = Number(val.wgProfit.toFixed(2));
+                val.wgInvest = Number(val.wgInvest.toFixed(2));
+                val.profit = Number(val.profit.toFixed(2));
+                val.invest = Number(val.invest.toFixed(2));
+            })
             res.render('betProfit', {
                 "data": data,
             }, function(err1, html) {

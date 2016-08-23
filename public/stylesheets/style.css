@@ -2,10 +2,19 @@
     font-family: "AlegreSans";
     src: url('AlegreSans-Regular.ttf') format('truetype');
 }
+@font-face {
+    font-family: "StTrans";
+    src: url('StTransmission-200-Thin.otf') format('opentype');
+}
+@font-face {
+    font-family: "Revolution";
+    src: url('REVOLUTION.ttf') format('truetype');
+}
 
 body {
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
     background-color: #f1f8e9;
+    height: 100%;
 }
 
 
@@ -50,12 +59,16 @@ body {
 .res {
     padding: 20px
 }
-
+img.floatleft {
+    margin:4px;
+}
 .teamCard {
     border: 1px black solid;
     float: left;
-    width: 350px;
-    margin: 15px;
+    width: 400px;
+    margin: 25px;
+    height: 225px;
+    box-shadow: 0px 0px 5px 2px black;
 }
 
 .floatleft {
@@ -97,8 +110,8 @@ body {
 
 .list:hover {
     cursor: pointer;
-    color:white;
-    opacity:0.5;
+    color: white;
+    opacity: 0.5;
 }
 
 .listIcon {
@@ -112,14 +125,44 @@ body {
 }
 
 #content {
-  padding:0;
+    padding: 0;
+    height: 100%;
+    overflow: scroll;
 }
 
-#updateInfo {
-  background: transparent;
+.updateInfo {
+    background: transparent;
 }
 
 #app {
-  margin-top:50px;
+    margin-top: 50px;
 }
 
+.cancleBtn {
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.saveBtn {
+    margin-left: 235px;
+    margin-top:20px;
+}
+
+.teamName {
+    font-family: "Revolution";
+    font-size: 18px;
+}
+
+.lineInput {
+    width:150px;
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.setGreen {
+    color:green;
+}
+
+.setRed{
+    color:red;
+}
